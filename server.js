@@ -16,6 +16,20 @@ dotenv.load({ path: ".env" });
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+// Set up promises with mongoose
+mongoose.Promise = global.Promise;
+// Connect to the Mongo DB
+mongoose.connect(
+  process.env.MONGODB_URI || "mongodb://localhost/nytreact",
+  {
+    useMongoClient: true
+  }
+)
+.catch(err => {
+  console.log("Database is not running");
+  console.log(err);
+});
+
 // Serve up static assets
 app.use(express.static("client/build"));
 
