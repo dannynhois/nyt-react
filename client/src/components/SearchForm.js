@@ -6,7 +6,7 @@ class SearchForm extends Component {
     this.state = {
       query: "",
       startYear: "",
-      endYear: 1992,
+      endYear: "",
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmitButton = this.handleSubmitButton.bind(this);
@@ -23,7 +23,7 @@ class SearchForm extends Component {
   handleSubmitButton(event) {
     event.preventDefault();
     this.props.getNewArticles(this.state.query);
-    this.setState({query:""});
+    this.setState({query:"", startYear:"", endYear:""});
 
   }
 
@@ -36,11 +36,11 @@ class SearchForm extends Component {
           </div>
           <div className="form-group">
             <label>Start Year</label>
-            <input type="text" className="form-control" id="start-year" placeholder="Start Year" value={this.state.startYear} onChange={this.handleInputChange} />
+            <input type="text" className="form-control" id="start-year" name="startYear" placeholder="Start Year" value={this.state.startYear} onChange={this.handleInputChange} />
           </div>
           <div className="form-group">
             <label>End Year</label>
-            <input type="text" className="form-control" id="end-year" placeholder="End Year" value={this.state.endYear} onChange={this.handleInputChange} />
+            <input type="text" className="form-control" id="end-year" name="endYear" placeholder="End Year" value={this.state.endYear} onChange={this.handleInputChange} />
           </div>
           <button type="submit" className="btn btn-primary" onClick={this.handleSubmitButton}>
             Submit
