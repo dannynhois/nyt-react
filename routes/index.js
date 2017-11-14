@@ -11,7 +11,7 @@ router.route("/api/articles/:query?")
 router.route("/api/saved")
   .get(savedController.findAll)
   .post(savedController.create)
-  .delete()
+  .delete(savedController.deleteArticle)
 
 router.use("/", (req, res) => {
   res.send("home route");
